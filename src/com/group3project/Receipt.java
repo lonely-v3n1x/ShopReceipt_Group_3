@@ -1,5 +1,7 @@
 package com.group3project;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -52,6 +54,57 @@ public class Receipt {
         System.out.printf("%45s%s\n", "", "TELL US HOW WE DID AT");
         System.out.printf("%48s%s\n", "", "7-ELEVEN.COM");
 
+
+    }
+
+    public static void saveToFile(ArrayList<itemID> items, userID customer, double tax) {
+        try {
+            PrintWriter outFile = new PrintWriter("Receipt.txt");
+
+
+            outFile.println(Logo.getLogo());
+
+            outFile.printf("%53s%s\n", "", "STORE #12345");
+            outFile.printf("%45s%s\n", "", "123 MAIN ST, CITYVILLE, CA 90001");
+            outFile.printf("%48s%s\n", "", "TEL: (233) 244079765");
+
+            //display Date
+            outFile.println(" ".repeat(5) + "DATE: " + date);
+            //display Time
+            outFile.println(" ".repeat(5) + "TIME: " + time);
+
+            //display Customer Name
+            outFile.println(" ".repeat(5) + "CUSTOMER NAME: " + customer.getName());
+
+            // qty item        price
+            outFile.printf("%5s%-10s%-75s%s\n", "", "QTY", "ITEM", "PRICE");
+            outFile.println(" ".repeat(5) + "_".repeat(90));
+
+
+            //loop and display items here
+            for (itemID item : items) {
+                outFile.printf("%5s%-10d%-75s%s\n", "", item.getQuantity(), item.getName(), item.getPrice());
+            }
+
+            outFile.println(" ".repeat(5) + "_".repeat(90));
+
+            //taxes and calculations
+            outFile.printf("%5s%-10s%-75f\n", "", "SUBTOTAL ", customer.getSubTotal());
+            outFile.printf("%5s%-10s%s%s%-75f\n", "", "TAXES( ", tax, ")", customer.getSubTotal());
+            outFile.printf("%5s%-10s%-75f\n", "", "TOTAL ", customer.getTotal(tax));
+
+            //footer
+            outFile.printf("%53s%s\n", "", "ORDER ID: #711-PROJ-025JK");
+            outFile.printf("%45s%s\n", "", "TELL US HOW WE DID AT");
+            outFile.printf("%48s%s\n", "", "7-ELEVEN.COM");
+
+
+            //close file to save
+            outFile.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

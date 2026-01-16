@@ -72,11 +72,6 @@ public class shop {
         }
     }
 
-    public static ArrayList<itemID> getUserSelection() {
-        return userSelection.getItemSelected();
-    }
-
-    ;
 
     static void main() {
         System.out.println(Logo.getLogo());
@@ -92,6 +87,7 @@ public class shop {
         }
 
         Receipt.displayReceipt(userSelection.getItemSelected(), userSelection, TAX);
+        Receipt.saveToFile(userSelection.getItemSelected(), userSelection, TAX);
 
 
     }
