@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class shop {
 
+    static final double TAX = 0.085; // 68.5%
 
     static userID userSelection;
 
@@ -69,9 +70,13 @@ public class shop {
                 break;
             }
         }
-
-
     }
+
+    public static ArrayList<itemID> getUserSelection() {
+        return userSelection.getItemSelected();
+    }
+
+    ;
 
     static void main() {
         System.out.println(Logo.getLogo());
@@ -85,6 +90,8 @@ public class shop {
         for (int i = 0; i < userSelection.getItemSelected().size(); i++) {
             System.out.println(userSelection.getItemSelected().get(i).getQuantity() + "x " + userSelection.getItemSelected().get(i).getName());
         }
+
+        Receipt.displayReceipt(userSelection.getItemSelected(), userSelection, TAX);
 
 
     }

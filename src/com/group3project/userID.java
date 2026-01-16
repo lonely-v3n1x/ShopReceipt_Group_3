@@ -30,5 +30,25 @@ public class userID {
         this.itemSelected.add(itemCopy);
     }
 
+    public double getSubTotal() {
+        double subTotal = 0;
+
+        for (itemID item : this.itemSelected) {
+            subTotal += item.getPrice() * item.getQuantity();
+        }
+
+        return subTotal;
+    }
+
+
+    public double getTotal(double tax) {
+        double total = 0;
+        for (itemID item : this.itemSelected) {
+            total += item.getPrice() * item.getQuantity();
+        }
+
+        return total + (tax * total);
+    }
+
 
 }
