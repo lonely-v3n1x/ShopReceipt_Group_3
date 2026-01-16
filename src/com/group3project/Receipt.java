@@ -44,7 +44,7 @@ public class Receipt {
 
         //taxes and calculations
         System.out.printf("%5s%-10s%-75f\n", "", "SUBTOTAL ", customer.getSubTotal());
-        System.out.printf("%5s%-10s%s%s%-75f\n", "", "TAXES( ", String.valueOf(tax), ")", customer.getSubTotal());
+        System.out.printf("%5s%-10s%s%s%-75f\n", "", "TAXES( ", tax, ")", customer.getSubTotal());
         System.out.printf("%5s%-10s%-75f\n", "", "TOTAL ", customer.getTotal(tax));
 
         //footer
@@ -61,5 +61,4 @@ public class Receipt {
 
     }
 
-    ;
 }
