@@ -55,7 +55,6 @@ public class Receipt {
 
     }
 
-    ;
 
     static void main() {
 //       displayReceiptj();
